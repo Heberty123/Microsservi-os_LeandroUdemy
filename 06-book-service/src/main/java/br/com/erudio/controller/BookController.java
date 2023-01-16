@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.erudio.model.Book;
 import br.com.erudio.proxy.CambioProxy;
 import br.com.erudio.repository.BookRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "Book endpoint")
 @RestController
 @RequestMapping("book-service")
 public class BookController {
@@ -24,6 +27,7 @@ public class BookController {
 	@Autowired
 	private CambioProxy proxy;
 	
+	@Operation(summary = "Find a specific book by your ID")
 	@GetMapping(value = "/{id}/{currency}")
 	public Book findBook(
 			@PathVariable("id") Long id,
